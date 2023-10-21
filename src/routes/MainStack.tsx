@@ -12,6 +12,7 @@ const MainStack: React.FC = () => {
       <Stack.Screen
         name="CharactersList"
         component={CharactersListScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
