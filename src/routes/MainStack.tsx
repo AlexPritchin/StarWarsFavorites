@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MainStackParamList } from './types';
 
 import CharactersListScreen from '../screens/CharactersListScreen';
+import CharacterDetailsScreen from '../screens/CharacterDetailsScreen';
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
@@ -13,6 +14,21 @@ const MainStack: React.FC = () => {
         name="CharactersList"
         component={CharactersListScreen}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CharacterDetails"
+        component={CharacterDetailsScreen}
+        options={({ route }) => ({
+          headerBackTitleVisible: false,
+          headerStyle: {
+            backgroundColor: '#ECF7FF',
+          },
+          headerTitle: route.params?.character.name,
+          headerTitleStyle: {
+            fontSize: 22,
+            fontWeight: 'bold',
+          },
+        })}
       />
     </Stack.Navigator>
   );

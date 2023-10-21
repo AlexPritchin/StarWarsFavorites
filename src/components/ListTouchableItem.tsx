@@ -1,25 +1,25 @@
 import {
   StyleSheet,
-  TouchableHighlight,
-  TouchableHighlightProps,
+  TouchableOpacity,
+  TouchableOpacityProps,
   Text,
   View,
 } from 'react-native';
 
 import { CharacterItem } from '../types/charactersTypes';
 
-interface Props extends TouchableHighlightProps {
+interface Props extends TouchableOpacityProps {
   characterItem: CharacterItem;
 }
 
 const ListTouchableItem: React.FC<Props> = ({ characterItem, ...rest }) => {
   return (
-    <TouchableHighlight {...rest}>
+    <TouchableOpacity {...rest}>
       <View style={styles.containerView}>
         <Text style={{ fontSize: 22, fontWeight: '500' }}>{characterItem.name}</Text>
         <Text style={{ fontSize: 18 }}>{characterItem.gender}</Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 

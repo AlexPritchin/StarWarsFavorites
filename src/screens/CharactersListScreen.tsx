@@ -58,7 +58,9 @@ const CharactersListScreen: React.FC<ScreenProps> = ({ navigation }) => {
 
   const renderListItem = (item: CharacterItem) => {
     return (
-      <ListTouchableItem characterItem={item}/>
+      <ListTouchableItem
+        characterItem={item}
+        onPress={() => { navigation.navigate('CharacterDetails', { character: item }) }}/>
     );
   };
 

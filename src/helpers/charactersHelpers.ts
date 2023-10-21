@@ -6,6 +6,12 @@ const getCharactersListItems = (data: any): CharacterItem[] => {
       id: dataItem?.url?.split('/', 6).pop(),
       name: dataItem?.name,
       gender: dataItem?.gender,
+      height: dataItem?.height,
+      mass: dataItem?.mass,
+      birthYear: dataItem?.birth_year,
+      hairColor: dataItem?.hair_color,
+      skinColor: dataItem?.skin_color,
+      eyeColor: dataItem?.eye_color,
     };
   });
 };
