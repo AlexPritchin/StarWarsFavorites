@@ -11,14 +11,14 @@ interface Props {
 
 const DetailsItem: React.FC<Props> = ({ title, value }) => {
   return (
-      <View style={styles.containerView}>
-        <View style={{ flex: 1 }}>
-          <Text style={{ fontSize: 22, fontWeight: '500' }}>{title}</Text>
-        </View>
-        <View style={{ flex: 1 }}>
-          <Text style={{ fontSize: 18 }}>{value}</Text>
-        </View>
+    <View style={styles.containerView}>
+      <View style={{ flex: 1 }}>
+        <Text style={{ fontSize: 22, fontWeight: '500' }}>{title}</Text>
       </View>
+      <View style={{ flex: 1 }}>
+        <Text style={{ fontSize: 18 }}>{value}</Text>
+      </View>
+    </View>
   );
 };
 

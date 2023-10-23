@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { MainStackParamList } from './types';
 
+import IconButton from '../components/IconButton';
 import CharactersListScreen from '../screens/CharactersListScreen';
 import CharacterDetailsScreen from '../screens/CharacterDetailsScreen';
 
@@ -28,6 +29,9 @@ const MainStack: React.FC = () => {
             fontSize: 22,
             fontWeight: 'bold',
           },
+          headerRight: () => (
+            <IconButton style={{ marginRight: -8 }}/>
+          ),
         })}
       />
     </Stack.Navigator>

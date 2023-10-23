@@ -16,6 +16,7 @@ import {
 import { getAllCharactersArrayFromPages } from '../helpers/charactersHelpers';
 import FullScreenSpinnerCentered from '../components/FullScreenSpinnerCentered';
 import ListTouchableItem from '../components/ListTouchableItem';
+import LikesStatisticView from '../components/LikesStatisticView';
 
 import { MainStackParamList } from '../routes/types';
 import { CharacterItem } from '../types/charactersTypes';
@@ -75,9 +76,10 @@ const CharactersListScreen: React.FC<ScreenProps> = ({ navigation }) => {
   return (
     <View style={{ flex: 1, paddingTop: 50, backgroundColor: 'white' }}>
       <View style={{ alignItems: 'center' }}>
-        <Image style={{ height: 70, width: 148 }} source={require('../resources/SWLogo.jpg')}/>
+        <Image style={{ height: 70, width: 148 }} source={require('../resources/SWLogo.jpg')} />
         <Text style={{ marginTop: 3, fontStyle: 'italic', fontWeight: '800', fontSize: 28 }}>Favorites</Text>
       </View>
+      <LikesStatisticView />
       {listQueryLoading && !isFetchingNextPage ? (
         <FullScreenSpinnerCentered />
       ) : (
@@ -86,6 +88,7 @@ const CharactersListScreen: React.FC<ScreenProps> = ({ navigation }) => {
             data={getAllCharactersArrayFromPages(charactersPages?.pages)}
             renderItem={({ item }) => renderListItem(item)}
             style={{
+              marginTop: 7,
               backgroundColor: 'white',
             }}
             contentContainerStyle={styles.listContentContainer}
