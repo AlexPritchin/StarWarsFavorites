@@ -38,7 +38,7 @@ const CharacterDetailsScreen: React.FC<ScreenProps> = ({ route }) => {
           value={character.eyeColor}/>
       </View>
       <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 19 }}>
-        <IconButton style={{ height: 40, width: 90, marginRight: 18, borderRadius: 8, backgroundColor: '#ECF7FF' }} />
+        <IconButton characterItem={route.params?.character} style={{ height: 40, width: 90, marginRight: 18, borderRadius: 8, backgroundColor: '#ECF7FF' }} />
       </View>
     </View>
   );

@@ -30,7 +30,7 @@ const MainStack: React.FC = () => {
             fontWeight: 'bold',
           },
           headerRight: () => (
-            <IconButton style={{ marginRight: -8 }}/>
+            <IconButton characterItem={route.params?.character} style={{ marginRight: -8 }}/>
           ),
         })}
       />

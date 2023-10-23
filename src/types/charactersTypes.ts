@@ -1,5 +1,5 @@
 export type CharacterItem = {
-  id: string;
+  id: number;
   name: string;
   gender?: string;
   height?: string;

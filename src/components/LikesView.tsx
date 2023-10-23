@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 interface Props {
-  likesNumber?: string;
+  likesNumber?: number;
   title?: string;
   titleStyle?: StyleProp<TextStyle>;
 }
@@ -15,7 +15,7 @@ interface Props {
 const LikesView: React.FC<Props> = ({ likesNumber, title, titleStyle }) => {
   return (
     <View style={styles.containerView}>
-      <Text style={{ fontSize: 22, fontWeight: '500' }}>20</Text>
+      <Text style={{ fontSize: 22, fontWeight: '500' }}>{likesNumber}</Text>
       <Text style={[{ fontSize: 14 }, titleStyle]}>{title}</Text>
     </View>
   );

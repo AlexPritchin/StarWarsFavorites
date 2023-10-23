@@ -5,14 +5,26 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 
+import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
+import { toggleFavorite, selectIsFavorite } from '../services/store';
+
+import { CharacterItem } from '../types/charactersTypes';
+
 interface Props extends TouchableOpacityProps {
-  title?: string;
+  characterItem: CharacterItem;
 }
 
-const IconButton: React.FC<Props> = ({ title, style, ...rest }) => {
+const IconButton: React.FC<Props> = ({ characterItem: {id, gender}, style, ...rest }) => {
+  const isCharacterFavorite = useAppSelector((state) => selectIsFavorite(state, id));
+  const iconName = isCharacterFavorite ? 'heart-fill' : 'heart';
+  const dispatch = useAppDispatch();
+
   return (
-    <TouchableOpacity style={[styles.containerView, style]} {...rest}>
-      <Icon name='heart' size={24} color='#FF2A24'/>
+    <TouchableOpacity
+      style={[styles.containerView, style]}
+      onPress={() => dispatch(toggleFavorite({characterId: id, characterGender: gender ?? ''}))}
+      {...rest}>
+      <Icon name={iconName} size={24} color='#FF2A24'/>
     </TouchableOpacity>
   );
 };

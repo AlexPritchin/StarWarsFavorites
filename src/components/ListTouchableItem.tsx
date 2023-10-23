@@ -23,7 +23,7 @@ const ListTouchableItem: React.FC<Props> = ({ characterItem, ...rest }) => {
           <Text style={{ fontSize: 18 }}>{characterItem.gender}</Text>
         </View>
         <View style={{ justifyContent: 'center' }}>
-          <IconButton />
+          <IconButton characterItem={characterItem}/>
         </View>
       </View>
     </TouchableOpacity>
