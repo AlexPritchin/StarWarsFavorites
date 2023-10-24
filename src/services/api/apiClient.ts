@@ -15,7 +15,7 @@ api.interceptors.response.use(
   function (error) {
     Alert.alert('Error', 'Something went wrong');
     return Promise.reject(error);
-  },
+  }
 );
 
 export default api;

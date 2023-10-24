@@ -5,18 +5,18 @@ import {
   Image,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import {
-  getCharactersList,
-} from '../services/query';
+import { getCharactersList } from '../services/query';
 import { getAllCharactersArrayFromPages } from '../helpers/charactersHelpers';
 import FullScreenSpinnerCentered from '../components/FullScreenSpinnerCentered';
-import ListTouchableItem from '../components/ListTouchableItem';
-import LikesStatisticView from '../components/LikesStatisticView';
+import ListTouchableItem from '../components/list/ListTouchableItem';
+import LikesStatisticView from '../components/list/LikesStatisticView';
+
+import { mainColors } from '../resources/data/colors';
 
 import { MainStackParamList } from '../routes/types';
 import { CharacterItem } from '../types/charactersTypes';
@@ -33,23 +33,19 @@ const CharactersListScreen: React.FC<ScreenProps> = ({ navigation }) => {
     isRefetching,
     hasNextPage,
     fetchNextPage,
-  } = useInfiniteQuery(
-    [ 'charactersList' ],
-    getCharactersList,
-    {
-      getNextPageParam: (lastPage, pages) => {
-        if (lastPage.next) {
-          if (currentPage.current === pages.length) {
-            ++currentPage.current;
-          }
-          return currentPage.current;
+  } = useInfiniteQuery(['charactersList'], getCharactersList, {
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage.next) {
+        if (currentPage.current === pages.length) {
+          ++currentPage.current;
         }
+        return currentPage.current;
+      }
 
-        return undefined;
-      },
-      cacheTime: 0,
-    }
-  );
+      return undefined;
+    },
+    cacheTime: 0,
+  });
 
   useEffect(() => {
     if (isRefetching) {
@@ -61,7 +57,10 @@ const CharactersListScreen: React.FC<ScreenProps> = ({ navigation }) => {
     return (
       <ListTouchableItem
         characterItem={item}
-        onPress={() => { navigation.navigate('CharacterDetails', { character: item }) }}/>
+        onPress={() => {
+          navigation.navigate('CharacterDetails', { character: item });
+        }}
+      />
     );
   };
 
@@ -74,10 +73,13 @@ const CharactersListScreen: React.FC<ScreenProps> = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1, paddingTop: 50, backgroundColor: 'white' }}>
+    <View style={styles.containerView}>
       <View style={{ alignItems: 'center' }}>
-        <Image style={{ height: 70, width: 148 }} source={require('../resources/SWLogo.jpg')} />
-        <Text style={{ marginTop: 3, fontStyle: 'italic', fontWeight: '800', fontSize: 28 }}>Favorites</Text>
+        <Image
+          style={styles.image}
+          source={require('../resources/images/SWLogo.jpg')}
+        />
+        <Text style={styles.title}>Favorites</Text>
       </View>
       <LikesStatisticView />
       {listQueryLoading && !isFetchingNextPage ? (
@@ -87,10 +89,7 @@ const CharactersListScreen: React.FC<ScreenProps> = ({ navigation }) => {
           <FlatList
             data={getAllCharactersArrayFromPages(charactersPages?.pages)}
             renderItem={({ item }) => renderListItem(item)}
-            style={{
-              marginTop: 7,
-              backgroundColor: 'white',
-            }}
+            style={styles.list}
             contentContainerStyle={styles.listContentContainer}
             ItemSeparatorComponent={() => renderSeparator()}
             ListFooterComponent={renderFooter}
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
   separator: {
     height: 1,
     marginLeft: 10,
-    backgroundColor: '#939393',
+    backgroundColor: mainColors.backgroundGray,
   },
   footerContainer: {
     flex: 1,
@@ -119,6 +118,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 30,
     marginBottom: 5,
+  },
+  containerView: {
+    flex: 1,
+    paddingTop: 50,
+    backgroundColor: 'white',
+  },
+  image: {
+    height: 70,
+    width: 148,
+  },
+  title: {
+    marginTop: 3,
+    fontStyle: 'italic',
+    fontWeight: '800',
+    fontSize: 28,
+  },
+  list: {
+    marginTop: 7,
+    backgroundColor: 'white',
   },
   listContentContainer: {
     paddingHorizontal: 25,

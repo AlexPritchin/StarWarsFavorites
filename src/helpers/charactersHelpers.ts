@@ -16,11 +16,10 @@ const getCharactersListItems = (data: any): CharacterItem[] => {
   });
 };
 
-const getAllCharactersArrayFromPages = (charactersPages?: CharacterListPage[]) => {
+const getAllCharactersArrayFromPages = (
+  charactersPages?: CharacterListPage[]
+) => {
   return charactersPages?.flatMap((page) => page.characters);
 };
 
-export {
-  getCharactersListItems,
-  getAllCharactersArrayFromPages,
-};
+export { getCharactersListItems, getAllCharactersArrayFromPages };

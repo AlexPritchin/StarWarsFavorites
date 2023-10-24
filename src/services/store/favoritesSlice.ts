@@ -1,6 +1,6 @@
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { RootState } from "./store";
+import { RootState } from './store';
 
 interface FavoritesState {
   male: number;
@@ -19,7 +19,7 @@ const initialState: FavoritesState = {
   female: 0,
   other: 0,
   likedIds: Array.from({ length: 82 }, (item) => false),
-}
+};
 
 export const favoritesSlice = createSlice({
   name: 'favorites',
@@ -27,7 +27,8 @@ export const favoritesSlice = createSlice({
   reducers: {
     toggleFavorite: (state, action: PayloadAction<ToggleFavoritePayload>) => {
       const { characterId: id, characterGender: gender } = action.payload;
-      const unifiedGender = gender === 'male' || gender === 'female' ? gender : 'other';
+      const unifiedGender =
+        gender === 'male' || gender === 'female' ? gender : 'other';
       state.likedIds[id] = !state.likedIds[id];
       if (state.likedIds[id]) {
         state[unifiedGender]++;
@@ -43,7 +44,9 @@ export const favoritesSlice = createSlice({
 
 export const { toggleFavorite, reset } = favoritesSlice.actions;
 
-const selectStatistics = ({ favorites: { male, female, other } }: RootState) => {
+const selectStatistics = ({
+  favorites: { male, female, other },
+}: RootState) => {
   return {
     male,
     female,
@@ -52,8 +55,14 @@ const selectStatistics = ({ favorites: { male, female, other } }: RootState) => 
   };
 };
 
-export const selectStatisticsMemoized = createSelector(selectStatistics, (result) => result);
+export const selectStatisticsMemoized = createSelector(
+  selectStatistics,
+  (result) => result
+);
 
-export const selectIsFavorite = ({ favorites: { likedIds } }: RootState, id: number) => likedIds[id];
+export const selectIsFavorite = (
+  { favorites: { likedIds } }: RootState,
+  id: number
+) => likedIds[id];
 
 export default favoritesSlice.reducer;

@@ -6,6 +6,8 @@ import IconButton from '../components/IconButton';
 import CharactersListScreen from '../screens/CharactersListScreen';
 import CharacterDetailsScreen from '../screens/CharacterDetailsScreen';
 
+import { mainColors } from '../resources/data/colors';
+
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainStack: React.FC = () => {
@@ -22,7 +24,7 @@ const MainStack: React.FC = () => {
         options={({ route }) => ({
           headerBackTitleVisible: false,
           headerStyle: {
-            backgroundColor: '#ECF7FF',
+            backgroundColor: mainColors.backgroundLightBlue,
           },
           headerTitle: route.params?.character.name,
           headerTitleStyle: {
@@ -30,7 +32,10 @@ const MainStack: React.FC = () => {
             fontWeight: 'bold',
           },
           headerRight: () => (
-            <IconButton characterItem={route.params?.character} style={{ marginRight: -8 }}/>
+            <IconButton
+              characterItem={route.params?.character}
+              style={{ marginRight: -8 }}
+            />
           ),
         })}
       />

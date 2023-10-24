@@ -6,9 +6,9 @@ import {
   View,
 } from 'react-native';
 
-import IconButton from './IconButton';
+import IconButton from '../IconButton';
 
-import { CharacterItem } from '../types/charactersTypes';
+import { CharacterItem } from '../../types/charactersTypes';
 
 interface Props extends TouchableOpacityProps {
   characterItem: CharacterItem;
@@ -19,11 +19,11 @@ const ListTouchableItem: React.FC<Props> = ({ characterItem, ...rest }) => {
     <TouchableOpacity {...rest}>
       <View style={styles.containerView}>
         <View style={styles.textContainerView}>
-          <Text style={{ fontSize: 22, fontWeight: '500' }}>{characterItem.name}</Text>
+          <Text style={styles.characterNameText}>{characterItem.name}</Text>
           <Text style={{ fontSize: 18 }}>{characterItem.gender}</Text>
         </View>
         <View style={{ justifyContent: 'center' }}>
-          <IconButton characterItem={characterItem}/>
+          <IconButton characterItem={characterItem} />
         </View>
       </View>
     </TouchableOpacity>
@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
     gap: 13,
     paddingTop: 11,
     paddingBottom: 15,
+  },
+  characterNameText: {
+    fontSize: 22,
+    fontWeight: '500',
   },
 });
 

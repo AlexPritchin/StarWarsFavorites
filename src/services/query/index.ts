@@ -1,7 +1,3 @@
-import {
-  getCharactersList,
-} from './queries';
+import { getCharactersList } from './queries';
 
-export {
-  getCharactersList,
-};
+export { getCharactersList };

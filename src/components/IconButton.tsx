@@ -9,22 +9,33 @@ import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
 import { toggleFavorite, selectIsFavorite } from '../services/store';
 
 import { CharacterItem } from '../types/charactersTypes';
+import { buttonsColors } from '../resources/data/colors';
 
 interface Props extends TouchableOpacityProps {
   characterItem: CharacterItem;
 }
 
-const IconButton: React.FC<Props> = ({ characterItem: {id, gender}, style, ...rest }) => {
-  const isCharacterFavorite = useAppSelector((state) => selectIsFavorite(state, id));
+const IconButton: React.FC<Props> = ({
+  characterItem: { id, gender },
+  style,
+  ...rest
+}) => {
+  const isCharacterFavorite = useAppSelector((state) =>
+    selectIsFavorite(state, id)
+  );
   const iconName = isCharacterFavorite ? 'heart-fill' : 'heart';
   const dispatch = useAppDispatch();
 
   return (
     <TouchableOpacity
       style={[styles.containerView, style]}
-      onPress={() => dispatch(toggleFavorite({characterId: id, characterGender: gender ?? ''}))}
+      onPress={() =>
+        dispatch(
+          toggleFavorite({ characterId: id, characterGender: gender ?? '' })
+        )
+      }
       {...rest}>
-      <Icon name={iconName} size={24} color='#FF2A24'/>
+      <Icon name={iconName} size={24} color={buttonsColors.iconRed} />
     </TouchableOpacity>
   );
 };

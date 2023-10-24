@@ -1,6 +1,6 @@
-import { CharacterItem } from "../types/charactersTypes";
+import { CharacterItem } from '../types/charactersTypes';
 
 export type MainStackParamList = {
   CharactersList: undefined;
-  CharacterDetails: {character: CharacterItem};
+  CharacterDetails: { character: CharacterItem };
 };

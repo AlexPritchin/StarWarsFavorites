@@ -6,9 +6,7 @@ interface CharactersListParams {
   pageParam?: number;
 }
 
-const getCharactersList = async ({
-  pageParam = 1,
-}: CharactersListParams) => {
+const getCharactersList = async ({ pageParam = 1 }: CharactersListParams) => {
   return api
     .get('people', {
       params: {
